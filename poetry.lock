@@ -186,6 +186,29 @@ pandas = ["numpy (>=1.7.0,<3.0.0)", "pandas (>=1.1.0,<3.0.0)"]
 pyarrow = ["pyarrow (>=1.0.0)"]
 
 [[package]]
+name = "neomodel"
+version = "5.5.3"
+description = "An object mapper for the neo4j graph database."
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "neomodel-5.5.3-py3-none-any.whl", hash = "sha256:5568512757d868b224b6d4beeb2e2fa94912ed1286e11bd032e17a9c9355d742"},
+    {file = "neomodel-5.5.3.tar.gz", hash = "sha256:fe36a48843ec9376210804ce90ac7e627da0895290f6702c7cc7dc00f2d66c9e"},
+]
+
+[package.dependencies]
+neo4j = ">=5.28.2,<5.29.0"
+
+[package.extras]
+dev = ["black", "isort", "mypy", "pandas-stubs", "pre-commit", "pytest (>=7.1)", "pytest-asyncio", "pytest-cov (>=4.0)", "pytest-mock", "types-shapely", "unasync"]
+extras = ["numpy", "pandas", "shapely"]
+numpy = ["numpy"]
+pandas = ["pandas"]
+rust-driver-ext = ["neo4j-rust-ext (>=5.28.2.1,<5.29.0.0)"]
+shapely = ["Shapely (>=2.0.0)"]
+
+[[package]]
 name = "pyjwt"
 version = "2.10.1"
 description = "JSON Web Token implementation in Python"
@@ -333,4 +356,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "36ad1808a08954ede48d7b0ee965bd39665656de3cf5b0cf3de2946c05671d3a"
+content-hash = "dfecea25fccf7eb97719dab5f552942a1c17a760a041daf21f8e3e52e82d1bb0"
