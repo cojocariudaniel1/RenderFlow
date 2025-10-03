@@ -1,42 +1,31 @@
-"use client"; // face pagina interactivă
+"use client";
 
 import { useState } from "react";
-
+import { registerUser } from "@/controller/auth";
+import { useRouter } from "next/navigation";
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Handle submit triggered");
-
     try {
-      console.log("Test")
-      const res = await fetch("http://localhost:8000/users/api/register/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (res.ok) {
-        alert("User registered successfully!");
-        window.location.href = "/login"; 
-
-      } else {
-        const data = await res.json();
-        alert("Registration failed: " + data.detail || "Unknown error");
-      }
-      alert("Test")
-    } catch (err) {
-      console.error(err);
-      alert("Error connecting to server");
+      await registerUser(username, password);
+      alert("User registered successfully!");
+      window.location.href = "/login";
+    } catch (err: any) {
+      alert(err.message);
     }
+  };
+  const handleLoginRoute = () => {
+    router.push("/login");
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow">
+
+    <div className="max-w-md mx-auto mt-20 p-6 bg-black rounded shadow">
+      <h1 className="text-2xl font-bold mb-4">Welcome to topikka</h1>
       <h1 className="text-2xl font-bold mb-4">Register</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
@@ -61,9 +50,13 @@ export default function RegisterPage() {
         >
           Register
         </button>
+        <button
+          onClick={handleLoginRoute}
+          className="mt-4 w-full bg-gray-200 text-gray-700 py-2 rounded hover:bg-gray-300"
+        >
+          Login instead
+        </button>
       </form>
     </div>
   );
 }
-
-
